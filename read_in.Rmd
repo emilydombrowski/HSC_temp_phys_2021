@@ -1,0 +1,9 @@
+---
+title: "read_in.Rmd"
+output: html_document
+---
+
+```{r}
+reu_dat_1
+boxplot(Ameb~Temperature, data = reu_dat_1, xlab = "Temperature", ylab = "Amebocyte Density")
+```
