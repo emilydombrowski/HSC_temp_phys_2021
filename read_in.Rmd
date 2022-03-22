@@ -3,7 +3,55 @@ title: "read_in.Rmd"
 output: html_document
 ---
 
-```{r}
+```{r temperature and density}
 reu_dat_1
 boxplot(Ameb~Temperature, data = reu_dat_1, xlab = "Temperature", ylab = "Amebocyte Density")
+```
+
+```{r age and density}
+reu_dat_1
+boxplot(Ameb~Age, data = reu_dat_1, xlab = "Amebocyte Density", ylab = "Age")
+```
+
+```{r temperature vs. amebocyte morphology}
+
+ # library
+library(ggplot2)
+ 
+# create a dataset
+morph <- c(reu_dat_2$`Morphology Condition`)
+temp_p <- c(reu_dat_2$Temperature)
+
+
+perc <- c(as.numeric(reu_dat_2$Morphology))
+perc_n <- as.numeric(perc)
+data_temp <- data.frame(perc,morph,temp_p)
+
+ 
+# Grouped
+ggplot(data_temp, aes(fill=morph, y=as.numeric(perc), x=temp_p)) + 
+    geom_bar(position="dodge", stat="identity") + 
+    ggtitle("Temperature vs. Amebocyte Morphology") +
+    xlab("Temperature") +
+    ylab("Percent Amebocyte Morphology")
+
+```
+
+```{r age vs. amebocyte morphology}
+
+ # library
+library(ggplot2)
+ 
+# create a dataset
+morph <- c(reu_dat_2$`Morphology Condition`)
+age_p <- c(reu_dat_2$Age)
+perc <- c(reu_dat_2$Morphology)
+data_age <- data.frame(perc,morph,temp_p)
+ 
+# Grouped
+ggplot(data_age, aes(fill=morph, y=perc, x=age_p)) + 
+    geom_bar(position="dodge", stat="identity") +
+    ggtitle("Age vs. Amebocyte Morphology") +
+    xlab("Age") +
+    ylab("Percent Amebocyte Morphology")
 ```
