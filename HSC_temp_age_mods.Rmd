@@ -1,0 +1,57 @@
+---
+title: "HSC_temp_age_models.Rmd"
+output: html_document
+---
+
+```{r read in data sets}
+HSC_age_dens
+HSC_morph_hr
+```
+
+```{r temperature and amebocyte density}
+boxplot(ameb_d~temp, data = HSC_age_dens, xlab = "Temperature", ylab = "Amebocyte Density")
+
+ameb_temp_mod <- lm(ameb_d~temp, data = HSC_age_dens)
+summary(ameb_temp_mod)
+anova(ameb_temp_mod)
+```
+
+```{r age and amebocyte density}
+boxplot(ameb_d~age, data = HSC_age_dens, xlab = "Amebocyte Density", ylab = "Age")
+
+ameb_age_mod <- lm(ameb_d~age, data = HSC_age_dens)
+summary(ameb_age_mod)
+anova(ameb_age_mod)
+```
+
+```{r temperature and amebocyte morphology}
+boxplot(morph_p ~ morph_c + temp, data = HSC_morph_hr, ylab = "Percent Morphology")
+
+age_temp_mod <- lm(morph_p ~ morph_c + temp, data = HSC_morph_hr)
+summary(age_temp_mod)
+anova(age_temp_mod)
+```
+
+```{r age and amebocyte morphology}
+boxplot(morph_p ~ morph_c + age, data = HSC_morph_hr, ylab = "Percent Morphology")
+
+age_morph_mod <- lm(morph_p ~ morph_c + age, data = HSC_morph_hr)
+summary(age_morph_mod)
+anova(age_morph_mod)
+```
+
+```{r age and heart rate}
+boxplot(hr ~ hr_c + age, data = HSC_morph_hr, ylab = "Heart Rate Condtion")
+
+age_hr_mod <- lm(hr ~ hr_c + age, data = HSC_morph_hr)
+summary(age_hr_mod)
+anova(age_hr_mod)
+```
+
+```{r temperature and heart rate}
+boxplot(hr ~ hr_c + temp, data = HSC_morph_hr, xlab = "Heart Rate Condtion")
+
+age_temp_mod <- lm(hr ~ hr_c + temp, data = HSC_morph_hr)
+summary(age_temp_mod)
+anova(age_temp_mod)
+```
